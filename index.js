@@ -1,9 +1,12 @@
 const { RTMClient } = require('@slack/rtm-api')
-const player = require('play-sound')(opts = {})
+const playsound = require('play-sound')
 
 const token = process.env.SLACK_BOT_TOKEN
 const rtm = new RTMClient(token)
 
+const player = playsound({
+  players: ["afplay", "play"] 
+})
 
 rtm.on('message', (event) => {
   if (event.type != "message") {
