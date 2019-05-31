@@ -13,7 +13,7 @@ rtm.on('message', (event) => {
     return
   }
   if (event.text.includes(':mega:')) {
-    player.play('sounds/kingbeatz.mp3')
+    player.play('sounds/kingbeatz.wav')
   }
 });
 
