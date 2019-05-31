@@ -18,6 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "@slack/rtm-api": "^5.0.1",
+    "generic-pool": "^3.7.1",
     "play-sound": "^1.1.3"
   }
 }
