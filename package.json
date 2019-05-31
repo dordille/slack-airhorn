@@ -1,0 +1,23 @@
+{
+  "name": "slack-airhorn",
+  "version": "1.0.0",
+  "description": "Sounds Via Slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/dordille/slack-airhorn"
+  },
+  "keywords": [
+    "slack",
+    "sound"
+  ],
+  "author": "Dan Ordille",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/rtm-api": "^5.0.1",
+    "play-sound": "^1.1.3"
+  }
+}
