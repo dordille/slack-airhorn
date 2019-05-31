@@ -5,34 +5,44 @@ const genericPool = require("generic-pool")
 const token = process.env.SLACK_BOT_TOKEN
 const rtm = new RTMClient(token)
 
+const AIR_HORN = "sounds/kingbeatz.wav"
+
 const player = playsound({
-  players: ["afplay", "play"] 
+  players: ["afplay", "play"]
 })
 
 const factory = {
   create: function() {
     return playsound({
-      players: ["afplay", "play"] 
+      players: ["afplay", "play"]
     })
   },
   destroy: function(player) {
-    
+
   }
 }
+
 const pool = genericPool.createPool(factory, {
   max: 3,
   min: 1,
   maxWaitingClients: 5
 });
 
-rtm.on('message', async (event) => {
-  if (event.type != "message") {
-    return
+async function playSound(sound) {
+  const player = await pool.acquire()
+  player.play(sound)
+  pool.release(player)
+}
+
+rtm.on('reaction_added', async (event) => {
+  if (event.reaction === "mega") {
+    await playSound(AIR_HORN)
   }
+})
+
+rtm.on('message', async (event) => {
   if (event.text.includes(':mega:')) {
-    const player = await pool.acquire()
-    player.play('sounds/kingbeatz.wav')
-    pool.release(player)
+    await playSound(AIR_HORN)
   }
 });
 
