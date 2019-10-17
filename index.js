@@ -6,6 +6,14 @@ const token = process.env.SLACK_BOT_TOKEN
 const rtm = new RTMClient(token)
 
 const AIR_HORN = "sounds/kingbeatz.wav"
+const WEE_WOO = "sounds/weewoo.wav"
+const NERD = "sounds/nerd.wav"
+
+const sounds = {
+  "mega": AIR_HORN,
+  "rotating_light": WEE_WOO,
+  "nerd_face": NERD
+}
 
 const player = playsound({
   players: ["afplay", "play"]
@@ -35,14 +43,17 @@ async function playSound(sound) {
 }
 
 rtm.on('reaction_added', async (event) => {
-  if (event.reaction === "mega") {
-    await playSound(AIR_HORN)
+  if (sounds[match[1]]) {
+    await playSound(sounds[event.reaction])
   }
 })
 
 rtm.on('message', async (event) => {
-  if (event.text.includes(':mega:')) {
-    await playSound(AIR_HORN)
+  const regexp = /\:(\w*)\:/g;
+  while ((match = regexp.exec(event.text)) !== null) {
+    if (sounds[match[1]]) {
+      await playSound(sounds[match[1]])
+    }
   }
 });
 
