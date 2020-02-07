@@ -8,11 +8,13 @@ const rtm = new RTMClient(token)
 const AIR_HORN = "sounds/kingbeatz.wav"
 const WEE_WOO = "sounds/weewoo.wav"
 const NERD = "sounds/nerd.wav"
+const BREAK_CHAIN = "sounds/breakthechain.wav"
 
 const sounds = {
   "mega": AIR_HORN,
   "rotating_light": WEE_WOO,
   "nerd_face": NERD
+  "chains": BREAK_CHAIN
 }
 
 const player = playsound({
