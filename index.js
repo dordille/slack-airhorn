@@ -13,7 +13,7 @@ const BREAK_CHAIN = "sounds/breakthechain.wav"
 const sounds = {
   "mega": AIR_HORN,
   "rotating_light": WEE_WOO,
-  "nerd_face": NERD
+  "nerd_face": NERD,
   "chains": BREAK_CHAIN
 }
 
